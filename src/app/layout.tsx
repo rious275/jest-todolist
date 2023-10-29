@@ -1,3 +1,4 @@
+import Provider from './(lib)/Provider';
 import './globals.css';
 
 export const metadata = {
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="flex flex-col items-center">{children}</body>
+      <body className="flex flex-col items-center">
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }

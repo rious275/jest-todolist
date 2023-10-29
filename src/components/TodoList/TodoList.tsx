@@ -1,21 +1,27 @@
+'use client';
+
 import React from 'react';
 import Button from '../Button';
-
-const list = [
-  { id: 1, todo: '내용asdaskasdaskdjaksd jdkl1' },
-  { id: 2, todo: '내용qw fqwdqwd2' },
-  { id: 3, todo: '내용3fsdfdfsad' },
-  { id: 4, todo: 'lask lfkasldkalsdklas d' },
-];
+import { useRecoilState } from 'recoil';
+import { todosAtom } from '@/recoil';
 
 const TodoList = () => {
+  const [todos, setTodos] = useRecoilState(todosAtom);
+
+  const deleteTodo = (id: number) => {
+    const filterTodo = todos.filter(todo => id !== todo.id);
+    setTodos(filterTodo);
+  };
+
   return (
     <div>
       <ul>
-        {list.map(({ id, todo }) => (
-          <li key={id} className="flex gap-10 justify-between mb-3 px-6 py-3">
+        {todos.map(({ id, todo }) => (
+          <li key={id} className="flex gap-10 justify-between px-6 py-3">
             <div>{todo}</div>
-            <Button color="red">삭제</Button>
+            <Button color="red" onClick={() => deleteTodo(id)}>
+              삭제
+            </Button>
           </li>
         ))}
       </ul>

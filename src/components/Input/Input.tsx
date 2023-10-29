@@ -2,9 +2,24 @@
 
 import { useState } from 'react';
 import Button from '../Button';
+import { useRecoilState } from 'recoil';
+import { todosAtom } from '@/recoil';
 
 const Input = () => {
   const [value, setValue] = useState('');
+
+  const [todos, setTodos] = useRecoilState(todosAtom);
+
+  const createTodo = () => {
+    if (!value) return;
+
+    const todo = {
+      id: todos.length + 1,
+      todo: value,
+      done: false,
+    };
+    setTodos([...todos, todo]);
+  };
 
   return (
     <div>
@@ -16,7 +31,13 @@ const Input = () => {
         value={value}
         onChange={e => setValue(e.target.value)}
       />
-      <Button color="blue">등록</Button>
+      <Button color="blue" onClick={createTodo}>
+        등록
+      </Button>
+
+      <Button color="blue" onClick={() => setTodos([])}>
+        -리셋
+      </Button>
     </div>
   );
 };

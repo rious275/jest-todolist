@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
 
-type ButtonProps = {
+type ButtonProps = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  'type'
+> & {
   children: string;
   color: string;
-  onClick?: () => void;
 };
 
 const Button = ({ children, color, onClick }: ButtonProps) => {
