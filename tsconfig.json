@@ -23,6 +23,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/components/Input.test.tsㅌ",
+    "src/components/Input/Input.test.tsx",
+    "src/components/Button"
+  ],
   "exclude": ["node_modules"]
 }
