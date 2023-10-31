@@ -7,18 +7,20 @@ import { todosAtom } from '@/recoil';
 
 const Input = () => {
   const [value, setValue] = useState('');
-
   const [todos, setTodos] = useRecoilState(todosAtom);
+
+  const todoId = Date.now();
 
   const createTodo = () => {
     if (!value) return;
 
     const todo = {
-      id: todos.length + 1,
+      id: todoId,
       todo: value,
       done: false,
     };
     setTodos([...todos, todo]);
+    setValue('');
   };
 
   return (

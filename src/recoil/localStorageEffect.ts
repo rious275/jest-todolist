@@ -1,13 +1,10 @@
-import { AtomEffect, DefaultValue } from 'recoil';
+import { AtomEffect } from 'recoil';
 
 const localStorageEffect: <T>(key: string) => AtomEffect<T> =
   key =>
   ({ setSelf, onSet }) => {
-    const value = window.localStorage.getItem(key);
-
-    if (value !== null) {
-      setSelf(JSON.parse(value));
-    }
+    const value = localStorage.getItem(key);
+    if (value !== null) setSelf(JSON.parse(value));
 
     onSet((newValue, _, isReset) => {
       isReset
