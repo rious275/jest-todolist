@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../Button';
 import { useRecoilState } from 'recoil';
 import { todosAtom } from '@/recoil';
@@ -11,6 +11,10 @@ const Input = () => {
 
   const todoId = Date.now();
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   const createTodo = () => {
     if (!value) return;
 
@@ -19,9 +23,12 @@ const Input = () => {
       todo: value,
       done: false,
     };
+
     setTodos([...todos, todo]);
     setValue('');
   };
+
+  const reset = () => setTodos([]);
 
   return (
     <div>
@@ -31,14 +38,14 @@ const Input = () => {
         className="my-8 mr-3 w-80 bg-gray-50 p-2 px-4 outline-none rounded-lg"
         placeholder="할 일을 입력해주세요"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={onChange}
       />
-      <Button color="blue" onClick={createTodo}>
+      <Button role="button-create" onClick={createTodo}>
         등록
       </Button>
-
-      <Button color="blue" onClick={() => setTodos([])}>
-        -리셋
+      {' - '}
+      <Button role="button-reset" color="red" onClick={reset}>
+        리셋
       </Button>
     </div>
   );

@@ -15,9 +15,12 @@ const TodoList = () => {
 
   return (
     <div>
-      <ul>
+      <ul className="w-screen max-w-md">
         {todos.map(({ id, todo }) => (
-          <li key={id} className="flex gap-10 justify-between px-6 py-3">
+          <li
+            key={id}
+            className="flex gap-10 justify-between px-6 py-3 hover:drop-shadow"
+          >
             <div>{todo}</div>
             <Button color="red" onClick={() => deleteTodo(id)}>
               삭제

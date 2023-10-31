@@ -1,7 +1,8 @@
+import { Metadata } from 'next';
 import Provider from './(lib)/Provider';
 import './globals.css';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Nextjs13 Todolist + Jest',
   description: '투두리스트 테스트 코드 작성 연습용',
 };

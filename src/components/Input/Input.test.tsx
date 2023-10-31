@@ -10,9 +10,19 @@ describe('<Input />', () => {
       </RecoilRoot>
     );
 
-  it('placeholder가 제대로 노출 된다.', () => {
+  it('플레이스홀더가 노출 된다.', () => {
     renderComponent();
     screen.getByPlaceholderText('할 일을 입력해주세요');
+  });
+
+  it('등록 버튼이 노출 된다.', () => {
+    renderComponent();
+    screen.getByRole('button-create');
+  });
+
+  it('리셋 버튼이 노출 된다.', () => {
+    renderComponent();
+    screen.getByRole('button-reset');
   });
 
   it('입력창에 사용자가 입력한 값으로 value가 잘 변경된다.', () => {
