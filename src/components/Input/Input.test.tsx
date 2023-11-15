@@ -25,6 +25,15 @@ describe('<Input />', () => {
     screen.getByRole('button-reset');
   });
 
+  it('리셋 버튼이 잘 동작하는지 확인', () => {
+    renderComponent();
+    const resetButton = screen.getByRole('button-reset');
+    fireEvent.click(resetButton);
+
+    const todos = screen.queryAllByRole('listitem');
+    expect(todos.length).toBe(0);
+  });
+
   it('입력창에 사용자가 입력한 값으로 value가 잘 변경된다.', () => {
     renderComponent();
     const input = screen.getByRole('todo-input') as HTMLInputElement;
